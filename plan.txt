@@ -1,0 +1,2 @@
+DISPLAY "How many players?"
+User INPUT noOfPlayers MIN 2 MAX 4

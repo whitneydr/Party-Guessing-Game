@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <link href="/styles/style.css" rel="stylesheet">
+    <script src="/scripts/script.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>Guessing Game</h1>
+        <div id="game-setup">
+            <div class="no-of-players">
+                <input type="number" id="playerNumbers" placeholder="Input number of players: 2-4" min="2" max="4">
+                <button type="submit"
+                    onclick="getPlayers(document.getElementById('playerNumbers').value)">Submit</button>
+            </div>
+            <div id="player-names">
+            </div>
+        </div>
+        <div id="game-arena">
+            <div id="round"></div>
+            <div id="players">
+                
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
