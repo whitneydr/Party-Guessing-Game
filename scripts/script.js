@@ -1,5 +1,26 @@
 // Declare variables
-let players = [];
+let players = [
+    {
+        "name": "Player 1",
+        "roundScore": 3,
+        "gameScore": 0
+    },
+    {
+        "name": "Player 2",
+        "roundScore": 3,
+        "gameScore": 0
+    },
+    {
+        "name": "Player 3",
+        "roundScore": 3,
+        "gameScore": 0
+    },
+    {
+        "name": "Player 4",
+        "roundScore": 3,
+        "gameScore": 0
+    }
+];
 let roundNumber = 1;
 let attemptNumber = 0;
 let roundPoints = 3;
@@ -7,10 +28,11 @@ let gamePoints = 0;
 let answer = '';
 let question = '';
 let object = '';
-let scoreP1 = 0;
-let scoreP2 = 0;
-let scoreP3 = 0;
-let scoreP4 = 0;
+let scoreP1 = players[0].gameScore;
+let scoreP2 = players[1].gameScore;
+let scoreP3 = players[2].gameScore;
+let scoreP4 = players[3].gameScore;
+let currentPlayer = 0;
 
 // Get number of players, add them to the game arena and start the game
 function getPlayers(numPlayers) {
@@ -26,22 +48,22 @@ function buildArena(numPlayers) {
 
     // Display the stage for the active player, with question and answer input
     let stage = `<div class="player" id="active-player">
-    <h2>Round ${roundNumber}</h2>
-    <h3>Active Player</h3>
-   <div id="question"></div>
-    <div id="result"></div>
-    <input type="text" id="guess" placeholder="Insert answer here">
-    <button type="submit" onclick="checkAnswer(document.getElementById('guess').value)">Submit answer</button>
-    </div>`;
+                    <h2>Round ${roundNumber}</h2>
+                    <h3>${players[currentPlayer].name}</h3>
+                    <div id="question"></div>
+                    <div id="result"></div>
+                    <input type="text" id="guess" placeholder="Insert answer here">
+                    <button type="submit" onclick="checkAnswer(document.getElementById('guess').value)">Submit answer</button>
+                 </div>`;
 
     playerArea.insertAdjacentHTML('beforeend', stage);
 
     // Create holding places for non-active players, displaying their score
     for (let i = 0; i < numPlayers; i++) {
         let backstage = `<div class="player" id="player-${i + 1}">
-        <h2>Player ${i + 1} score</h2>
-       <div id="score-P${i + 1}" class="score"></div>
-        </div>`;
+                            <h2>Player ${i + 1} score</h2>
+                            <div id="score-P${i + 1}" class="score"></div>
+                         </div>`;
 
         playerArea.insertAdjacentHTML('beforeend', backstage);
         getScores(i + 1)
@@ -112,7 +134,10 @@ function checkAnswer(guess) {
     if (guess === answer && attemptNumber < 3) {
         resultDiv.style.backgroundColor = "green";
         resultDiv.innerHTML = `You win! ${roundPoints} points!`;
-        console.log("winner")
+        console.log("winner");
+        players[currentPlayer].gameScore += roundPoints;
+        currentPlayer++;
+        roundPoints = 3;
     } else if (guess != answer) {
         console.log("Attempt number " + attemptNumber);
         roundPoints--;
@@ -127,6 +152,8 @@ function checkAnswer(guess) {
             console.log(`Attempt number ${attemptNumber}`)
         } else if (attemptNumber == 3) {
             resultDiv.innerHTML = `The answer is ${answer}. Better luck next time. ${roundPoints} points.`
+            currentPlayer++;
+            roundPoints = 3;
         }
     }
 }
