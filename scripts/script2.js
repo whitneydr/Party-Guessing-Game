@@ -1,10 +1,9 @@
-// Declare variables
 let players = [];
 let roundNumber = 1;
 let attemptNumber = 0;
 let roundPoints = 3;
 let gamePoints = 0;
-let answer = '';
+let answer = 'fish';
 let question = '';
 let object = '';
 let scoreP1 = 0;
@@ -12,63 +11,31 @@ let scoreP2 = 0;
 let scoreP3 = 0;
 let scoreP4 = 0;
 
-// Get number of players, add them to the game arena and start the game
 function getPlayers(numPlayers) {
     let playerNameInput = document.getElementById('player-names');
+
     buildArena(numPlayers);
     // activePlayer(numPlayers);
     startGame();
 }
 
-// Create the game arena with an active player and scores for the waiting players
 function buildArena(numPlayers) {
     let playerArea = document.getElementById('players');
-
-    // Display the stage for the active player, with question and answer input
-    let stage = `<div class="player" id="active-player">
-    <h2>Round ${roundNumber}</h2>
-    <h3>Active Player</h3>
-   <div id="question"></div>
-    <div id="result"></div>
-    <input type="text" id="guess" placeholder="Insert answer here">
-    <button type="submit" onclick="checkAnswer(document.getElementById('guess').value)">Submit answer</button>
-    </div>`;
-
-    playerArea.insertAdjacentHTML('beforeend', stage);
-
-    // Create holding places for non-active players, displaying their score
+    
     for (let i = 0; i < numPlayers; i++) {
-        let backstage = `<div class="player" id="player-${i + 1}">
-        <h2>Player ${i + 1} score</h2>
-       <div id="score-P${i + 1}" class="score"></div>
+        let stage = `<div class="player" id="player-${i + 1}">
+        <h2>Player ${i + 1}</h2>
+       <div id="question"></div>
+        <div id="result"></div>
+        <input type="text" id="guess" placeholder="Insert answer here">
+        <button type="submit" onclick="checkAnswer(document.getElementById('guess').value)">Submit answer</button>
         </div>`;
 
-        playerArea.insertAdjacentHTML('beforeend', backstage);
-        getScores(i + 1)
-    }
 
-}
-
-// Collect scores
-
-function getScores(num) {
-    let scoreP1div = document.getElementById('score-P1');
-    let scoreP2div = document.getElementById('score-P2');
-    let scoreP3div = document.getElementById('score-P3');
-    let scoreP4div = document.getElementById('score-P4');
-
-    if (num === 1) {
-        scoreP1div.innerHTML = `${scoreP1}`
-    } else if (num === 2) {
-        scoreP2div.innerHTML = `${scoreP2}`
-    } else if (num === 3) {
-        scoreP3div.innerHTML = `${scoreP3}`
-    } else if (num === 4) {
-        scoreP4div.innerHTML = `${scoreP4}`
+        playerArea.insertAdjacentHTML('beforeend', stage);
     }
 }
 
-// Select a question and answer from the array
 function startGame() {
     let questionNumber = randomNumber(objectList.length);
     question = objectList[questionNumber];
@@ -77,7 +44,6 @@ function startGame() {
     console.log(`The answer is ${answer}`);
 }
 
-// Loop through players and make them active for their turn
 function activePlayer(numPlayers) {
     for (let i = 0; i < numPlayers; i++) {
         console.log(`Active player ${i + 1}`);
@@ -93,32 +59,28 @@ function activePlayer(numPlayers) {
 }
 
 
-// Generate a random number
+
 function randomNumber(num) {
     return Math.floor(Math.random() * num);
 }
 
-// Collect question from array
 function getQuestion(num) {
     document.getElementById('question').innerHTML = objectList[num].prompt;
 }
 
-// Check whether the given answer is correct
 function checkAnswer(guess) {
     let resultDiv = document.getElementById('result');
     console.log(guess, answer)
     guess = guess.toLowerCase();
-
     if (guess === answer && attemptNumber < 3) {
         resultDiv.style.backgroundColor = "green";
-        resultDiv.innerHTML = `You win! ${roundPoints} points!`;
+        resultDiv.innerHTML = `You win! ${roundPoints} points!`
         console.log("winner")
     } else if (guess != answer) {
         console.log("Attempt number " + attemptNumber);
         roundPoints--;
         attemptNumber++;
         resultDiv.style.backgroundColor = "red";
-
         if (attemptNumber == 1) {
             resultDiv.innerHTML = `Try again. Here's a hint 1: ${question.hintOne}`;
             console.log(`Attempt number ${attemptNumber}`)
@@ -131,9 +93,10 @@ function checkAnswer(guess) {
     }
 }
 
+console.log(randomNumber(5));
 
 
-// List of objects to be used for game questions
+
 const objectList = [
     {
         "name": "book",

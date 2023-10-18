@@ -52,11 +52,18 @@ button {
     padding: 10px;
     flex-shrink: 1;
     flex-grow: 1;
+    text-align: center;
 }
 
-.active-player {
+.score {
+    font-size:3rem;
+    font-weight: 700;
+}
+
+#active-player {
     width: 100%;
     border: solid 3px greenyellow;
+    background-color: greenyellow;
 }
 
 #player-1 {
