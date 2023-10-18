@@ -26,6 +26,7 @@ input {
     border: 1px solid grey;
     font-size: inherit;
     padding: 0 2%;
+    margin-bottom: 10px;
 }
 
 button {
@@ -91,5 +92,5 @@ button {
     padding: 5px 10px;
     width: 80%;
     color:#fff;
-    margin:10px 0;
+    margin:10px auto;
 }
