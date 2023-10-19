@@ -1,2 +1,15 @@
-DISPLAY "How many players?"
-User INPUT noOfPlayers MIN 2 MAX 4
+// Unfinished business
+
+To fix:
+- Fix scoreboard so it displays each player's gameScore after every turn
+- Stop game from looping more than the desired number of players
+- "Correct answer" message only shows for player 4
+- Styling is hideous
+
+To add:
+- Loop game through 3 rounds
+- Add leaderboard at the end of the three rounds
+- More entries to the objectList
+- Some way to stop repeat questions per game
+- Create players as a class so only the necessary amount is pushed to the array
+
