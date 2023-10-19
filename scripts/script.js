@@ -50,16 +50,15 @@ function getPlayers(numPlayers) {
     //         break;
     //  } while (currentPlayer < numOfPlayers-2)
 
-    // for (let i=1; i < numPlayers-1; i++) {
-    //     setStage();
-    //     // activePlayer(numPlayers);
-    //     startGame(); 
-    //     buildArena(numOfPlayers);
-    // } 
+//    for (let i=1; i < numOfPlayers; i++) {
+//         setStage();
+//         startGame(); 
+//         buildArena(numOfPlayers);
+//      } 
 
 }
 
-function launchGame() {
+function launchGame() { 
     setStage();
     startGame();
     buildArena(numOfPlayers);
@@ -107,7 +106,7 @@ function buildArena(numPlayers) {
              playerArea.insertAdjacentHTML('beforeend', backstage);
         }
 
-        //playerArea.insertAdjacentHTML('beforeend', backstage);
+        // playerArea.insertAdjacentHTML('beforeend', backstage);
     }
 
 }
