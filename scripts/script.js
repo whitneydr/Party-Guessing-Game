@@ -1,26 +1,5 @@
 // Declare variables
-let players = [
-    {
-        "name": "Player 1",
-        "roundScore": 0,
-        "gameScore": 0
-    },
-    {
-        "name": "Player 2",
-        "roundScore": 0,
-        "gameScore": 0
-    },
-    {
-        "name": "Player 3",
-        "roundScore": 0,
-        "gameScore": 0
-    },
-    {
-        "name": "Player 4",
-        "roundScore": 0,
-        "gameScore": 0
-    }
-];
+let players = [];
 let roundNumber = 1;
 let attemptNumber = 0;
 let roundPoints = 3;
@@ -28,34 +7,40 @@ let gamePoints = 0;
 let answer = '';
 let question = '';
 let object = '';
-let scoreP1 = players[0].gameScore;
-let scoreP2 = players[1].gameScore;
-let scoreP3 = players[2].gameScore;
-let scoreP4 = players[3].gameScore;
+// let scoreP1 = players[0].gameScore;
+// let scoreP2 = players[1].gameScore;
+// let scoreP3 = players[2].gameScore;
+// let scoreP4 = players[3].gameScore;
 let currentPlayer = 0;
 let numOfPlayers = 0;
+
 
 
 // Get number of players, add them to the game arena and start the game
 function getPlayers(numPlayers) {
     let playerNameInput = document.getElementById('player-names');
-    numOfPlayers = parseInt(numPlayers);
+    numPlayers = parseInt(numPlayers);
+    numOfPlayers = numPlayers;
+
+    // for (let i=0; i < numPlayers; i++) {
+    //     const newInput = document.createElement("input");
+    //     newInput.type = "text";
+    //     newInput.placeholder = `Player ${i+1} name`;
+    //     newInput.id = `player-name-${i+1}`;
+    //     playerNameInput.insertAdjacentElement('beforeend', newInput);
+    //     const submitBtn = document.createElement("button");
+    //     submitBtn.type = "submit";
+    //     submitBtn.innerText = "Submit";
+    //     submitBtn.id = "submit-players";
+    //     submitBtn.onclick = `players.push({"playerNumber": ${i+1}, "playerName": Player ${newInput.value}, "roundScore": 0, "gameScore": 0})`
+    //     newInput.insertAdjacentElement('afterend', submitBtn);
+    // } 
+
+    for (let i = 0; i < numPlayers; i++) {
+        players.push({"playerNumber": `${i+1}`, "playerName": `Player ${i+1}`, "roundScore": 0, "gameScore": 0})
+    }
+    console.log(players)
     launchGame();
-
-    //  do {
-    //     setStage();
-    //      startGame();
-    //      buildArena(numOfPlayers);
-    //      console.log(currentPlayer, numOfPlayers);
-    //         break;
-    //  } while (currentPlayer < numOfPlayers-2)
-
-//    for (let i=1; i < numOfPlayers; i++) {
-//         setStage();
-//         startGame(); 
-//         buildArena(numOfPlayers);
-//      } 
-
 }
 
 function launchGame() { 
@@ -70,7 +55,7 @@ function setStage() {
 
     let stage = `<div class="player" id="active-player">
                         <h2>Round ${roundNumber}</h2>
-                        <h3>${players[currentPlayer].name}</h3>
+                        <h3>${players[currentPlayer].playerName}</h3>
                         <div id="question"></div>
                         <div id="result"></div>
                         <input type="text" id="guess" placeholder="Insert answer here">
@@ -96,7 +81,7 @@ function buildArena(numPlayers) {
     for (let i = 0; i < numPlayers; i++) {
         let backstage = `<div class="player" id="player-${i + 1}">
                             <h2>Player ${i + 1} score</h2>
-                            <div id="score-P${i + 1}" class="score">${players[i].gameScore}</div>
+                            <div id="score-P${i + 1}" class="score">${getScore(i)}</div>
                          </div>`;
 
          if (backstageDiv) {
@@ -175,7 +160,7 @@ function checkAnswer(guess, player) {
             resultDiv.innerHTML = `You win! ${roundPoints} points!`;
             players[currentPlayer].gameScore += roundPoints;
             players[player].roundScore += roundPoints;
-            console.log(`${players[player].name} answered correctly. ${players[player].roundScore} this round. ${players[player].gameScore} this game.`)
+            console.log(`${players[player].playerName} answered correctly. ${players[player].roundScore} this round. ${players[player].gameScore} this game.`)
             // currentPlayer++;
             roundPoints = 3;
             nextPlayer();

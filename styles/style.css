@@ -2,28 +2,40 @@ html, body {
     box-sizing: border-box;
     font-family:'Courier New', Courier, monospace;
     font-size: 18px;
-    color: rgb(65, 63, 63);
-    background-color: darkorange;
+    color: rgb(15 15 15);
+    background-color: #cbf3f0;
 }
 
 main {
     background-color: #fff;
     padding: 24px;
     margin: 40px auto;
-    max-width: 900px;
-    border: 1px solid orange;
+    max-width: 640px;
+    border: 1px solid #cbf3f0;
     border-radius: 8px;
 }
 
 #game-setup {
-    padding: 20px;
-    background-color:antiquewhite;
+    padding: 5%;
+    background-color: #fafcfc;
+    margin: 10px auto;
+}
+
+.no-of-players {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 20px 0;
+}
+#player-names {
+    display: flex;
+    flex-direction: column;
 }
 
 input {
-    width: 80%;
     height: 42px;
-    border: 1px solid grey;
+    border: 1px solid rgb(210, 213, 211);
+    border-radius: 5px;
     font-size: inherit;
     padding: 0 2%;
     margin-bottom: 10px;
@@ -33,14 +45,14 @@ button {
     height: 42px;
     width:fit-content;
     padding: 10px 20px;
-    background-color: darkorange;
+    background-color: #FF9F1C;
     color: #fff;
-    border: 1px solid darkorange;
+    border: 1px solid #FF9F1C;
     border-radius: 8px;
     font-size:inherit;
 }
 
-#players {
+#players, #backstage {
     display:flex;
     flex-wrap: wrap;
     justify-content: stretch;
@@ -48,8 +60,7 @@ button {
 
 .player {
     width: 45%;
-    min-width:350px;
-    margin: 10px;
+    min-width:200px;
     padding: 10px;
     flex-shrink: 1;
     flex-grow: 1;
@@ -63,24 +74,35 @@ button {
 
 #active-player {
     width: 100%;
-    border: solid 3px greenyellow;
-    background-color: greenyellow;
+    border: solid 3px #1effea;
+    background-color: #1effea;
+    margin-bottom: 10px;
+}
+
+#round {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border: solid 3px #1effea;
+    background-color: #1effea;
+    margin-bottom: 10px;
+    padding: 20px 0;
 }
 
 #player-1 {
-    background-color: deeppink;
+    background-color: #c954ff;
 }
 
 #player-2 {
-    background-color:deepskyblue;
+    background-color:#fff92d;
 }
 
 #player-3 {
-    background-color: coral;
+    background-color: #ff941d;
 }
 
 #player-4 {
-    background-color: darkorchid;
+    background-color: #687eff;
 }
 
 #question {
@@ -93,4 +115,8 @@ button {
     width: 80%;
     color:#fff;
     margin:10px auto;
+}
+
+.hide {
+    display: none !important;
 }

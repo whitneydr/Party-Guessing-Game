@@ -1,3 +1,5 @@
+
+
 const objectList = [
     {
         "name": "book",
@@ -50,3 +52,5 @@ function getPlayers(numPlayers) {
     buildArena(numPlayers);
     startGame();
 }
+
+export { objectList };

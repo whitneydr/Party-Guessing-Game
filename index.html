@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guessing Game</title>
     <link href="/styles/style.css" rel="stylesheet">
-    <script src="/scripts/script.js"></script>
+    <!-- <script src="/scripts/script.js"></script> -->
+    <script src="/scripts/script2.js"></script>
 </head>
 
 <body>
     <main>
-        <h1>Guessing Game</h1>
+        <h1>Riddle Me This!</h1>
         <div id="game-setup">
             <div class="no-of-players">
-                <input type="number" id="playerNumbers" placeholder="Input number of players: 2-4" min="2" max="4">
+                <p><strong>Enter the number of players:</strong></p>
+                <input type="number" id="playerNumbers" placeholder="Input 2-4 players" min="2" max="4">
                 <button type="submit"
                     onclick="getPlayers(document.getElementById('playerNumbers').value)">Submit</button>
             </div>
@@ -26,7 +28,7 @@
             <div id="players">
                 
             </div>
-            <div id="backstage"></div>
+            
             
         </div>
     </main>
