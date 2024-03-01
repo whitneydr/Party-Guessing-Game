@@ -83,6 +83,7 @@ function buildArena() {
 
     const scoreboard = document.getElementById('backstage');
 
+    // Update player scores
     if (scoreboard) {
         scoreboard.remove();
         playerArea.insertAdjacentElement('afterend', backstageDiv);
@@ -145,7 +146,6 @@ function checkAnswer(guess, player) {
                 nextRound();
             }
 
-            // nextPlayer();
         } else if (guess != answer) {
             console.log("Attempt number " + attemptNumber);
             roundPoints--;
@@ -159,13 +159,20 @@ function checkAnswer(guess, player) {
                 resultDiv.innerHTML = `Try again. Here's a hint 2: ${question.hintTwo}`;
                 console.log(`Wrong again. Attempt number ${attemptNumber}`);
             } else if (attemptNumber == 3) {
-                resultDiv.innerHTML = `The answer is ${answer}. Better luck next time. ${roundPoints} points.`
+                resultDiv.innerHTML = `The answer is ${answer}. Better luck next time. ${roundPoints} points.`;
+
                 // nextRound();
                 // roundNumber++;
                 currentPlayer++;
                 attemptNumber = 0;
                 roundPoints = 3;
-                startGame();
+                // startGame();
+
+                if (currentPlayer < players.length) {
+                    startGame();
+                } else {
+                    nextRound();
+                }
             }
     }
     }
@@ -177,11 +184,24 @@ function nextRound() {
         roundNumber++;
         currentPlayer = 0;
         attemptNumber = 0;
+        roundPoints = 3;
         startGame();
     } else {
         gameOver();
     }
     
+}
+
+function nextPlayer() {
+    if (currentPlayer < players.length-1) {
+        currentPlayer++;
+        attemptNumber = 0;
+        roundPoints = 3;
+        startGame();
+    } else {
+        nextRound();
+    }
+
 }
 
 function gameOver() {
@@ -190,7 +210,8 @@ function gameOver() {
     let round = document.getElementById('round');
     round.style.display = 'flex';
     round.innerHTML = `<h2>Game Over</h2>
-    <button onclick="location.reload()">Restart game</button>`
+    <button onclick="location.reload()">Restart game</button>`;
+    buildArena();
 }
 
 function hideElement(div) {
@@ -241,5 +262,26 @@ const objectList = [
         "hintOne": "It helps you find your way",
         "hintTwo": "X marks the spot",
         "category": ["travel"]
+    },
+    {
+        "name": "river",
+        "prompt": "What runs, but never walks.<br>Murmurs, but never talks.<br>Has a bed, but never sleeps.<br>And has a mouth, but never eats?",
+        "hintOne": "Be careful crossing, you could get swept away",
+        "hintTwo": "It empties into the sea",
+        "category": ["nature"]
+    },
+    {
+        "name": "coffin",
+        "prompt": "The person who makes it has no need of it;<br>the person who buys it has no use for it.<br>The person who uses it can neither see nor feel it.",
+        "hintOne": "People are dying to get in",
+        "hintTwo": "It's very underground",
+        "category": ["objects"]
+    },
+    {
+        "name": "mirror",
+        "prompt": "If you drop me, I’m sure to crack,<br>but smile at me and I’ll smile back.",
+        "hintOne": "Break me and you'll have seven years bad luck",
+        "hintTwo": "I help you see what's behind you",
+        "category": ["household"]
     }
 ];
